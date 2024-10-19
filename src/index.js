@@ -9,6 +9,15 @@ app.get("/", (request, response) => {
   });
 });
 
+app.post("/", (request, response) => {
+  response.json({
+    message: "POST request received!",
+  });
+});
+
+const { router } = require("./controllers/pokemonController.js");
+app.use("/pokemon", router);
+
 const PORT = 3000;
 
 app.listen(PORT, () => {
