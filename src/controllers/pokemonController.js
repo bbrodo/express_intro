@@ -1,5 +1,5 @@
 const express = require("express");
-const { getOrCreatePokemonNumber, getPokeApiData } = require("../middleware/pokeApiMiddleware");
+const { getOrCreatePokemonNumber, getPokeApiData, trimPokeApiData } = require("../middleware/pokeApiMiddleware");
 
 const router = express.Router();
 
@@ -27,6 +27,7 @@ router.get(
   '/randommiddleware', 
   getOrCreatePokemonNumber,
   getPokeApiData,
+  trimPokeApiData,
 
 
   (request, response) => {
