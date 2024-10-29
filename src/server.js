@@ -2,11 +2,13 @@ const express = require("express");
 
 const app = express();
 
-function xanderMiddleware (request, response, next){
+app.use(express.json());
+
+function xanderMiddleware(request, response, next) {
   response.customData = {
     ...request.customData,
-    xander: "cool programmer"
-  }
+    xander: "cool programmer",
+  };
   next();
 }
 
@@ -14,7 +16,7 @@ app.get("/", xanderMiddleware, (request, response) => {
   //   response.send("<h1>Hello world</h1>");
   response.json({
     message: "Hello World",
-    customStuff: response.customData
+    customStuff: response.customData,
   });
 });
 
@@ -27,9 +29,9 @@ app.post("/", (request, response) => {
 const pokemonController = require("./controllers/pokemonController.js");
 app.use("/pokemon", pokemonController);
 
-const userController = require("./controllers/userController.js")
-app.use("/users", userController)
+const userController = require("./controllers/userController.js");
+app.use("/users", userController);
 
 module.exports = {
-    app
-}
+  app,
+};
