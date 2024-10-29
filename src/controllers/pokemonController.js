@@ -1,4 +1,5 @@
 const express = require("express");
+const { getOrCreatePokemonNumber, getPokeApiData } = require("../middleware/pokeApiMiddleware");
 
 const router = express.Router();
 
@@ -21,5 +22,17 @@ router.get("/random", async (request, response) => {
     result: pokemonData,
   });
 });
+
+router.get(
+  '/randommiddleware', 
+  getOrCreatePokemonNumber,
+  getPokeApiData,
+
+
+  (request, response) => {
+    response.json({
+      result: 'todo'
+    })
+})
 
 module.exports = router;
